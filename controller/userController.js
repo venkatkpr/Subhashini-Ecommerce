@@ -8,6 +8,7 @@ const register=async(req,res)=>{
     let password=req.body.password;
 
     try {
+        console.log(req.body);
         const edata=await User.findOne({email:email})
         if(edata) return res.send("Email is already used")
         const salt_routes=10;
@@ -17,6 +18,7 @@ const register=async(req,res)=>{
                 email,
                 password:hash,
             })
+            console.log(data);
             if(data) return res.send('User Created successfully')
         })
     } catch (error) {

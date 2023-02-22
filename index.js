@@ -21,7 +21,9 @@ const port=process.env.PORT || 5002
 app.use('/api/user',user);
 app.use('/api/booking',booking)
 app.use('/api',cart)
-
+app.get('/',(req,res)=>{
+    res.send("hellow")
+})
 
 app.listen(port,()=>{
     console.log(`server running at ${port}`);
