@@ -21,7 +21,8 @@ const port=process.env.PORT || 5002
 app.use('/api/user',user);
 app.use('/api/booking',booking)
 app.use('/api',cart)
-app.get('/',(req,res)=>{
+app.get('/g',(req,res)=>{
+    console.log("Hello");
     res.send("hellow")
 })
 
