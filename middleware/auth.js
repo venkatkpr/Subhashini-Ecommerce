@@ -3,6 +3,7 @@ import jwt from 'jsonwebtoken'
 
 function  auth(req,res,next){
     const token=req.header('x-auth-token')
+    console.log('token');
     if(!token) return res.status(401).send('user denied')
     try {
         console.log("working");

@@ -1,22 +1,23 @@
 import express from 'express';
 import bodyParser from 'body-parser';
-import mongoose from 'mongoose';
 import cors from 'cors'
+import {MongoClient} from 'mongodb'
 import user from './routes/user.js'
 import booking from './routes/booking.js'
 import cart from './routes/cart.js'
+import dotenv from 'dotenv'
 
 const app=express()
 
 app.use(cors())
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
-
-mongoose.connect('mongodb+srv://Subhashini:subhashini@cluster0.yrxfb3a.mongodb.net/E-commerce?retryWrites=true&w=majority')
-.then(()=>console.log('db connected'))
-.catch((e)=>console.log('error'))
-
-const port=process.env.PORT || 5002
+//
+MongoClient.connect(process.env.DB_URL)
+.then(()=>console.log('\x1b[34m%s\x1b[0m',"ENV_PORT",process.env.PORT))
+.catch((e)=>console.log('\x1b[31m%s\x1b[0m','Error While Conecting To DataBase'))
+console.log('\x1b[32m%s\x1b[0m',"ENV_DB_CLUSTER",process.env.DB_URL);
+const port=process.env.PORTa || 5002
 
 app.use('/api/user',user);
 app.use('/api/booking',booking)
@@ -27,5 +28,5 @@ app.get('/g',(req,res)=>{
 })
 
 app.listen(port,()=>{
-    console.log(`server running at ${port}`);
+    console.log('\x1b[36m%s\x1b[0m',`Server Is Running On ${port}`);
 })

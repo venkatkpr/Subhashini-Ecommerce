@@ -6,7 +6,7 @@ const register=async(req,res)=>{
     let name=req.body.name;
     let email=req.body.email;
     let password=req.body.password;
-
+    console.log(name,email,password);
     try {
         console.log(req.body);
         const edata=await User.findOne({email:email})
@@ -19,7 +19,11 @@ const register=async(req,res)=>{
                 password:hash,
             })
             console.log(data);
-            if(data) return res.send('User Created successfully')
+            console.log("data.status",data.status);
+        })
+        return res.send({
+            status:true,
+            message:"Successfully Created Users",
         })
     } catch (error) {
         return res.send(error.message)
@@ -49,8 +53,9 @@ const login=async(req,res)=>{
     }
 }
 const getme=async(req,res)=>{
-    // res.send('hello')
+    res.send('hello')
     let _id=req.user._id
+    console.log("User Get Api",_id);
     try {
        const data=await User.findOne({_id:_id}) 
        if (data) return res.send(data)
