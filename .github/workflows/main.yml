@@ -1,0 +1,26 @@
+name: Deploying
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: executing remote ssh commands using ssh key
+        uses: venkatkpr/ssh-action@master
+        with:
+          host: ${{ AWS_HOST }}
+          username: ${{ AWS_USER }}
+          key: ${{ AWS_KEY }}
+          script: |
+            export NVM_DIR=~/.nvm
+            source ~/.nvm/nvm.sh
+            cd Subhashini-Ecommerce
+            pm2 delete all
+            npm i --force
+            pm2 start npm --name 'Subhashini-Ecommerce' -- run 'start:dev' -i 2
