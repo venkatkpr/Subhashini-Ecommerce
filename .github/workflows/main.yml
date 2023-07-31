@@ -14,9 +14,9 @@ jobs:
       - name: executing remote ssh commands using ssh key
         uses: venkatkpr/ssh-action@master
         with:
-          host: ${{ AWS_HOST }}
-          username: ${{ AWS_USER }}
-          key: ${{ AWS_KEY }}
+          host: ${{ secrets.AWS_HOST }}
+          username: ${{ secrets.AWS_USER }}
+          key: ${{ secrets.AWS_KEY }}
           script: |
             export NVM_DIR=~/.nvm
             source ~/.nvm/nvm.sh
