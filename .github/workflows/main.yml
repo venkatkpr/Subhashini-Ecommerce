@@ -18,9 +18,9 @@ jobs:
           username: ${{ secrets.AWS_USER }}
           key: ${{ secrets.AWS_KEY }}
           script: |
-            export NVM_DIR=~/.nvm
-            source ~/.nvm/nvm.sh
             cd Subhashini-Ecommerce
+            git pull
+            pm2 list
             pm2 delete all
             npm i --force
             pm2 start npm --name 'Subhashini-Ecommerce' -- run 'start:dev' -i 2
