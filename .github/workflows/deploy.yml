@@ -22,4 +22,4 @@ jobs:
             pm2 delete all
             git pull
             npm i --force
-            pm2 start npm --name 'Subhashini-Ecommerce' -- run 'start' -i 2
+            pm2 start npm --name 'Subhashini-Ecommerce' -- run 'start'
