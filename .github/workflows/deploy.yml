@@ -1,0 +1,25 @@
+name: Deploying
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: executing remote ssh commands using ssh key
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.AWS_HOST }}
+          username: ${{ secrets.AWS_USER }}
+          key: ${{ secrets.AWS_KEY }}
+          script: |
+            cd Subhashini-Ecommerce
+            pm2 delete all
+            git pull
+            npm i --force
+            pm2 start npm --name 'Subhashini-Ecommerce' -- run 'start' -i 2
