@@ -24,6 +24,7 @@ app.use('/api/booking',booking)
 app.use('/api',cart)
 app.get('/g',(req,res)=>{
     console.log("Hello");
+    console.log("Test update");
     res.send("hellow")
 })
 
